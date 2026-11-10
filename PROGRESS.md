@@ -11,6 +11,13 @@
 - 시작 화면: `https://olivinehs-new.github.io/assembly-request-tool/web/`
 - 배분 화면: `https://olivinehs-new.github.io/assembly-request-tool/web/assign.html`
 
+## Vercel 배포 주소
+
+- 상태: 프로덕션 배포 완료
+- 시작 화면: `https://assembly-request-tool-seven.vercel.app/`
+- 배분 화면: `https://assembly-request-tool-seven.vercel.app/assign.html`
+- Vercel에는 개인정보가 포함될 수 있는 프로젝트 원문·엑셀을 제외하고 `web/` 폴더만 배포한다.
+
 | 날짜 | 단계 | 완료 | 남은 일 | 막힌 점 / 질문 |
 |---|---|---|---|---|
 | 2026-11-09 | S2 문제정의 | `00_문제정의/problem.md` 작성. 접수대장 520건을 근거로 현재 업무·문제·목표·범위·검증 기준 정리 | 없음 | 없음 |
@@ -30,6 +37,7 @@
 | 2026-11-10 | GitHub 공개 배포 준비 | 비밀키·토큰·주민번호·이메일 패턴 0건 확인. PDF·엑셀 10개에서 가상 전화번호 형식만 확인. `.gitignore`에 환경파일, 의존성, 캐시, 생성 결과를 추가 | 없음 | 없음 |
 | 2026-11-10 | GitHub Pages 배포 | `olivinehs-new/assembly-request-tool` 공개 저장소 생성, `main` 첫 push, Pages 배포 원본을 `main / (root)`로 설정하고 실제 시작·배분 화면 주소를 기록 | Pages 빌드 완료 후 화면 확인 | 없음 |
 | 2026-11-10 | Pages 기본 주소 연결 | 저장소 최상위 `index.html`을 추가해 기본 Pages 주소가 `web/` 시작 화면으로 자동 이동하도록 구성 | 없음 | 없음 |
+| 2026-11-10 | Vercel 프로덕션 배포 | `web/` 폴더만 `olivinehs-new/assembly-request-tool` Vercel 프로젝트에 정적 사이트로 배포하고 Git 자동 배포 Root Directory도 `web`으로 고정. 시작·배분 화면 HTTP 200과 배포 상태 READY 확인. 원문 PDF·엑셀·참고문서는 배포에서 제외 | 없음 | 브라우저 자동검사 도구가 없어 시각 검증은 HTTP·HTML 요소 검사로 대체 |
 
 ## 다음 작업
 

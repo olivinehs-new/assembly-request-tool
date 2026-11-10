@@ -5,6 +5,7 @@
 
 # Dependencies and caches
 node_modules/
+.vercel/
 __pycache__/
 *.py[cod]
 
