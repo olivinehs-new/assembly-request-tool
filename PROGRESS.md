@@ -6,10 +6,10 @@
 
 ## GitHub Pages 배포 주소
 
-- 상태: GitHub 로그인·공개 저장소 생성 전
-- 시작 화면(예정): `https://<GitHub아이디>.github.io/<저장소명>/web/`
-- 배분 화면(예정): `https://<GitHub아이디>.github.io/<저장소명>/web/assign.html`
-- 저장소 생성 후 `<GitHub아이디>`와 `<저장소명>`을 실제 값으로 바꾼다.
+- 상태: 공개 저장소 생성·첫 push·Pages 설정 완료
+- 저장소: `https://github.com/olivinehs-new/assembly-request-tool`
+- 시작 화면: `https://olivinehs-new.github.io/assembly-request-tool/web/`
+- 배분 화면: `https://olivinehs-new.github.io/assembly-request-tool/web/assign.html`
 
 | 날짜 | 단계 | 완료 | 남은 일 | 막힌 점 / 질문 |
 |---|---|---|---|---|
@@ -27,7 +27,8 @@
 | 2026-11-10 | 문항 분리 스킬 경로 확정 | 방금 수행한 절차와 확인 기준을 `.agents/skills/split-request/SKILL.md`에 `name: split-request`, 설명, 준비·추출·교체본 대조·확인 절차로 저장하고 기본 스킬 검사 통과 | 실제 호출 시 적용 여부 확인 | 없음 |
 | 2026-11-10 | 조직도 JSON 변환 | `to_json.js`를 작성해 `data/A부_조직도_26개과.csv`의 실국·과·대표키워드를 `org.json` 배열로 변환. 대표키워드는 `|` 기준 배열화하고 26개 원소, 열 구조, 첫 원소를 검증 | 없음 | 없음 |
 | 2026-11-10 | S4 배분 화면 | `web/index.html`, `web/assign.html`, `web/common.js`, `web/split.js` 작성. 조직도 26개 과와 배분기준 304건을 `web/data`에 복사하고 pdf.js 6.5.438을 `web/lib`에 포함. PDF·문항목록 CSV 접수, 규칙 후보 3순위, 주관·협조 과 선택, 배분확정 방법·변경 로그, localStorage 현황을 구현. pdf.js로 원문 3건 25·34·19문항 합계 78건 및 번호 연속 확인, 모의 저장소에서 78건 등록·2건 배분확정·조직도 밖 0건 확인 | S6 현업 회신, S8 취합 화면 | 이 실행 환경에서는 로컬 브라우저 탭 열기가 비활성화되어 클릭 기반 시각 검증은 수행하지 못함 |
-| 2026-11-10 | GitHub 공개 배포 준비 | 비밀키·토큰·주민번호·이메일 패턴 0건 확인. PDF·엑셀 10개에서 가상 전화번호 형식만 확인. `.gitignore`에 환경파일, 의존성, 캐시, 생성 결과를 추가하고 Pages 예정 주소를 기록 | 사용자 GitHub 로그인 후 저장소 생성·첫 push·Pages 활성화, 실제 주소로 치환 | GitHub 계정명·저장소명이 아직 없음 |
+| 2026-11-10 | GitHub 공개 배포 준비 | 비밀키·토큰·주민번호·이메일 패턴 0건 확인. PDF·엑셀 10개에서 가상 전화번호 형식만 확인. `.gitignore`에 환경파일, 의존성, 캐시, 생성 결과를 추가 | 없음 | 없음 |
+| 2026-11-10 | GitHub Pages 배포 | `olivinehs-new/assembly-request-tool` 공개 저장소 생성, `main` 첫 push, Pages 배포 원본을 `main / (root)`로 설정하고 실제 시작·배분 화면 주소를 기록 | Pages 빌드 완료 후 화면 확인 | 없음 |
 
 ## 다음 작업
 
