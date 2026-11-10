@@ -15,3 +15,8 @@ org.json
 tmp/
 output/
 *.log
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
