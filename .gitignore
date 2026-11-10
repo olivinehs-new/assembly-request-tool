@@ -1,0 +1,16 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies and caches
+node_modules/
+__pycache__/
+*.py[cod]
+
+# Generated results
+data/문항목록.csv
+org.json
+tmp/
+output/
+*.log

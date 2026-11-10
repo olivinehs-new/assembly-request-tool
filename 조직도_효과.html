@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A부 조직도 · 26개 과</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy-950: #0b1f33;
+      --navy-800: #183a59;
+      --navy-700: #24506f;
+      --teal-600: #167b78;
+      --teal-100: #dff3f1;
+      --blue-050: #f4f8fb;
+      --line: #d8e2ea;
+      --text: #172433;
+      --muted: #5e6f80;
+      --white: #ffffff;
+      --shadow: 0 18px 50px rgba(19, 49, 73, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 86% 8%, rgba(22, 123, 120, 0.13), transparent 28rem),
+        linear-gradient(180deg, #eef5f8 0, #f8fafc 24rem, #f8fafc 100%);
+      color: var(--text);
+      font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+      line-height: 1.55;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0 72px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--teal-600);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--navy-950);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .summary {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding-bottom: 4px;
+    }
+
+    .stat {
+      min-width: 92px;
+      padding: 13px 16px;
+      border: 1px solid rgba(36, 80, 111, 0.14);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 8px 24px rgba(19, 49, 73, 0.07);
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .stat-value {
+      display: block;
+      color: var(--navy-800);
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    .table-panel {
+      overflow: hidden;
+      border: 1px solid rgba(36, 80, 111, 0.15);
+      border-radius: 22px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .table-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      padding: 17px 22px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, rgba(24, 58, 89, 0.055), rgba(22, 123, 120, 0.035));
+    }
+
+    .table-heading p {
+      margin: 0;
+      color: var(--navy-800);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .table-heading span {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+    }
+
+    table {
+      width: 100%;
+      min-width: 910px;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.91rem;
+    }
+
+    caption {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      padding: 14px 16px;
+      border-bottom: 1px solid #c7d5df;
+      background: var(--navy-950);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      --row-delay: 0ms;
+      opacity: 0;
+      transform: translateY(8px);
+      transition:
+        opacity 420ms ease var(--row-delay),
+        transform 420ms ease var(--row-delay),
+        filter 180ms ease;
+    }
+
+    [data-stagger].show tbody tr {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    tbody td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #e4ebf0;
+      background: var(--white);
+      vertical-align: top;
+      transition: background-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    tbody tr:nth-child(even) td { background: var(--blue-050); }
+
+    tbody tr:hover {
+      position: relative;
+      z-index: 1;
+      transform: translateY(-2px);
+      filter: drop-shadow(0 8px 9px rgba(25, 61, 89, 0.12));
+    }
+
+    tbody tr:hover td { background: #eff9f7; }
+
+    tbody tr:last-child td { border-bottom: 0; }
+
+    .no {
+      width: 56px;
+      color: #718293;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    .group {
+      width: 130px;
+      color: var(--navy-700);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .department {
+      width: 170px;
+      color: var(--navy-950);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .work { min-width: 280px; }
+
+    .keywords { min-width: 260px; }
+
+    .tag {
+      display: inline-block;
+      margin: 1px 4px 3px 0;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--teal-100);
+      color: #0f6461;
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 650ms ease, transform 650ms cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .note {
+      margin: 16px 4px 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-align: right;
+    }
+
+    @media (max-width: 760px) {
+      .page { padding-top: 36px; }
+      .hero { grid-template-columns: 1fr; align-items: start; }
+      .summary { justify-content: flex-start; }
+      .table-heading { align-items: flex-start; flex-direction: column; gap: 3px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+      }
+      .reveal,
+      tbody tr {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      tbody tr:hover { filter: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero reveal" data-reveal>
+      <div>
+        <p class="eyebrow">A부 조직 안내</p>
+        <h1>조직도</h1>
+        <p class="intro">실·국별 소관 과와 주요업무, 대표키워드를 한눈에 확인할 수 있도록 정리했습니다.</p>
+      </div>
+      <div class="summary" aria-label="조직도 요약">
+        <div class="stat"><span class="stat-value">9</span><span class="stat-label">조직 단위</span></div>
+        <div class="stat"><span class="stat-value">26</span><span class="stat-label">과</span></div>
+      </div>
+    </header>
+
+    <section class="table-panel reveal" data-reveal data-stagger aria-labelledby="table-title">
+      <div class="table-heading">
+        <p id="table-title">A부 조직 및 소관업무</p>
+        <span>가로로 밀어 전체 항목을 확인할 수 있습니다.</span>
+      </div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="A부 조직도 표">
+        <table>
+          <caption>A부 26개 과의 실국, 과, 주요업무와 대표키워드</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="no">번호</th>
+              <th scope="col">실국</th>
+              <th scope="col">과</th>
+              <th scope="col">주요업무</th>
+              <th scope="col">대표키워드</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="no">01</td><td class="group">기획조정실</td><td class="department">기획재정담당관</td><td class="work">예산 편성·결산, 성과관리, 국회 업무 총괄</td><td class="keywords"><span class="tag">예산</span><span class="tag">결산</span><span class="tag">세출</span><span class="tag">성과관리</span></td></tr>
+            <tr><td class="no">02</td><td class="group">기획조정실</td><td class="department">혁신행정담당관</td><td class="work">조직·정원, 정부혁신, 행정제도</td><td class="keywords"><span class="tag">조직</span><span class="tag">정원</span><span class="tag">직제</span><span class="tag">정부혁신</span></td></tr>
+            <tr><td class="no">03</td><td class="group">기획조정실</td><td class="department">규제개혁법무담당관</td><td class="work">법령 제·개정, 규제개혁, 소송</td><td class="keywords"><span class="tag">법령</span><span class="tag">시행령</span><span class="tag">시행규칙</span><span class="tag">고시</span></td></tr>
+            <tr><td class="no">04</td><td class="group">기획조정실</td><td class="department">정보화담당관</td><td class="work">정보시스템 운영, 정보화 예산, 개인정보 보호</td><td class="keywords"><span class="tag">정보시스템</span><span class="tag">홈페이지</span><span class="tag">전산</span><span class="tag">정보화사업</span></td></tr>
+            <tr><td class="no">05</td><td class="group">대변인실</td><td class="department">홍보담당관</td><td class="work">언론 대응, 정책 홍보, 보도자료</td><td class="keywords"><span class="tag">홍보</span><span class="tag">보도자료</span><span class="tag">언론</span><span class="tag">광고</span></td></tr>
+            <tr><td class="no">06</td><td class="group">감사관실</td><td class="department">감사담당관</td><td class="work">자체감사, 공직기강, 부패방지</td><td class="keywords"><span class="tag">감사</span><span class="tag">공직기강</span><span class="tag">징계</span><span class="tag">부패</span></td></tr>
+            <tr><td class="no">07</td><td class="group">운영지원과</td><td class="department">운영지원과</td><td class="work">인사·복무, 청사관리, 업무추진비, 관용차량</td><td class="keywords"><span class="tag">인사</span><span class="tag">승진</span><span class="tag">복무</span><span class="tag">청사</span></td></tr>
+            <tr><td class="no">08</td><td class="group">디지털정책국</td><td class="department">디지털정책과</td><td class="work">디지털 전환 정책, AI 행정 도입</td><td class="keywords"><span class="tag">디지털전환</span><span class="tag">인공지능</span><span class="tag">AI</span><span class="tag">디지털플랫폼</span></td></tr>
+            <tr><td class="no">09</td><td class="group">디지털정책국</td><td class="department">데이터정책과</td><td class="work">공공데이터 개방, 데이터 표준</td><td class="keywords"><span class="tag">공공데이터</span><span class="tag">데이터 개방</span><span class="tag">데이터표준</span><span class="tag">빅데이터</span></td></tr>
+            <tr><td class="no">10</td><td class="group">디지털정책국</td><td class="department">정보보호과</td><td class="work">사이버 보안, 해킹 대응</td><td class="keywords"><span class="tag">사이버</span><span class="tag">해킹</span><span class="tag">보안</span><span class="tag">랜섬웨어</span></td></tr>
+            <tr><td class="no">11</td><td class="group">디지털정책국</td><td class="department">공공서비스혁신과</td><td class="work">전자정부 서비스, 온라인 민원</td><td class="keywords"><span class="tag">전자정부</span><span class="tag">온라인 민원</span><span class="tag">모바일 신분증</span><span class="tag">간편인증</span></td></tr>
+            <tr><td class="no">12</td><td class="group">지역지원국</td><td class="department">지역정책과</td><td class="work">지역 정책 총괄, 지자체 협력</td><td class="keywords"><span class="tag">지자체</span><span class="tag">지역정책</span><span class="tag">자치</span><span class="tag">지방자치</span></td></tr>
+            <tr><td class="no">13</td><td class="group">지역지원국</td><td class="department">지역개발과</td><td class="work">지역개발사업, 기반시설</td><td class="keywords"><span class="tag">지역개발</span><span class="tag">개발사업</span><span class="tag">도시재생</span><span class="tag">기반시설</span></td></tr>
+            <tr><td class="no">14</td><td class="group">지역지원국</td><td class="department">균형발전과</td><td class="work">국가균형발전, 인구감소지역</td><td class="keywords"><span class="tag">균형발전</span><span class="tag">인구감소</span><span class="tag">소멸</span><span class="tag">지방이전</span></td></tr>
+            <tr><td class="no">15</td><td class="group">지역지원국</td><td class="department">지방재정협력과</td><td class="work">지방교부세, 국고보조금</td><td class="keywords"><span class="tag">교부세</span><span class="tag">보조금</span><span class="tag">국고보조</span><span class="tag">지방재정</span></td></tr>
+            <tr><td class="no">16</td><td class="group">안전관리국</td><td class="department">안전정책과</td><td class="work">안전 정책 총괄, 안전 점검 제도</td><td class="keywords"><span class="tag">안전정책</span><span class="tag">안전점검</span><span class="tag">안전관리</span><span class="tag">안전문화</span></td></tr>
+            <tr><td class="no">17</td><td class="group">안전관리국</td><td class="department">재난대응과</td><td class="work">재난 대응, 재난 지원금</td><td class="keywords"><span class="tag">재난</span><span class="tag">태풍</span><span class="tag">호우</span><span class="tag">지진</span></td></tr>
+            <tr><td class="no">18</td><td class="group">안전관리국</td><td class="department">시설안전과</td><td class="work">공공시설 안전, 노후시설</td><td class="keywords"><span class="tag">시설물</span><span class="tag">노후시설</span><span class="tag">교량</span><span class="tag">터널</span></td></tr>
+            <tr><td class="no">19</td><td class="group">안전관리국</td><td class="department">기후위기대응과</td><td class="work">기후위기 적응, 폭염·한파 대책</td><td class="keywords"><span class="tag">기후</span><span class="tag">폭염</span><span class="tag">한파</span><span class="tag">탄소</span></td></tr>
+            <tr><td class="no">20</td><td class="group">산업협력국</td><td class="department">산업정책과</td><td class="work">산업 정책, 규제 샌드박스</td><td class="keywords"><span class="tag">산업정책</span><span class="tag">신산업</span><span class="tag">규제 샌드박스</span><span class="tag">첨단산업</span></td></tr>
+            <tr><td class="no">21</td><td class="group">산업협력국</td><td class="department">중소기업지원과</td><td class="work">중소기업·소상공인 지원 사업</td><td class="keywords"><span class="tag">중소기업</span><span class="tag">소상공인</span><span class="tag">창업</span><span class="tag">벤처</span></td></tr>
+            <tr><td class="no">22</td><td class="group">산업협력국</td><td class="department">국제협력과</td><td class="work">국제기구 협력, 해외 협력사업</td><td class="keywords"><span class="tag">국제기구</span><span class="tag">ODA</span><span class="tag">해외 협력</span><span class="tag">양해각서</span></td></tr>
+            <tr><td class="no">23</td><td class="group">산업협력국</td><td class="department">통상협력과</td><td class="work">통상 협상, 수출 지원</td><td class="keywords"><span class="tag">통상</span><span class="tag">수출</span><span class="tag">FTA</span><span class="tag">관세</span></td></tr>
+            <tr><td class="no">24</td><td class="group">인재정책국</td><td class="department">인재정책과</td><td class="work">인재 양성 정책, 장학 사업</td><td class="keywords"><span class="tag">인재양성</span><span class="tag">장학</span><span class="tag">청년인재</span><span class="tag">전문인력</span></td></tr>
+            <tr><td class="no">25</td><td class="group">인재정책국</td><td class="department">교육훈련과</td><td class="work">공무원·민간 교육훈련</td><td class="keywords"><span class="tag">교육훈련</span><span class="tag">연수</span><span class="tag">교육과정</span><span class="tag">직무교육</span></td></tr>
+            <tr><td class="no">26</td><td class="group">인재정책국</td><td class="department">고용지원과</td><td class="work">고용 지원 사업, 일자리</td><td class="keywords"><span class="tag">일자리</span><span class="tag">고용</span><span class="tag">취업</span><span class="tag">청년고용</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="note reveal" data-reveal>자료 기준: data/A부_조직도_26개과.csv</p>
+  </main>
+
+  <script>
+    (() => {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const targets = document.querySelectorAll('[data-reveal]');
+
+      document.querySelectorAll('[data-stagger] tbody tr').forEach((row, index) => {
+        row.style.setProperty('--row-delay', `${Math.min(index, 12) * 42}ms`);
+      });
+
+      if (reducedMotion || !('IntersectionObserver' in window)) {
+        targets.forEach((target) => target.classList.add('show'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+
+      targets.forEach((target) => observer.observe(target));
+    })();
+  </script>
+</body>
+</html>
